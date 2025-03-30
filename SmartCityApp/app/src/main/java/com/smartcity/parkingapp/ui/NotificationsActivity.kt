@@ -159,8 +159,8 @@ class NotificationsActivity : AppCompatActivity(), NotificationAdapter.OnNotific
     
     private fun showEmptyView(show: Boolean) {
         if (show) {
-            emptyView.visibility = View.VISIBLE
-            recyclerView.visibility = View.GONE
+            emptyView.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         } else {
             emptyView.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE

@@ -186,16 +186,23 @@ class HomeFragment : Fragment() {
                             updateNotificationPreview(notification.getString("title") ?: "",
                                                     notification.getString("message") ?: "",
                                                     notification.getDate("timestamp"))
+                            
+                            // Show the notification preview section
+                            view?.findViewById<View>(R.id.notification_preview_container)?.visibility = View.VISIBLE
                         }
                     }
                 } else {
                     // Hide badge if no unread notifications
                     notificationBadge.visibility = View.GONE
+                    // Hide the notification preview section when there are no notifications
+                    view?.findViewById<View>(R.id.notification_preview_container)?.visibility = View.GONE
                 }
             }
             .addOnFailureListener { e ->
                 // On error, hide badge
                 notificationBadge.visibility = View.GONE
+                // Hide the notification preview section
+                view?.findViewById<View>(R.id.notification_preview_container)?.visibility = View.GONE
             }
     }
     
