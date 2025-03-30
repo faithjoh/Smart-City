@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background Circle -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#3F51B5" />
+            <size android:width="40dp" android:height="40dp" />
+        </shape>
+    </item>
+    
+    <!-- "P" Letter (Using text) -->
+    <item android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="#00000000" /> <!-- Transparent -->
+        </shape>
+        <text
+            android:text="P"
+            android:gravity="center"
+            android:textSize="24dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </item>
+</layer-list> 

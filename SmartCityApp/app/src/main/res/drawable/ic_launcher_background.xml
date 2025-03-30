@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Gradient background -->
+    <path
+        android:fillColor="#0277BD"
+        android:pathData="M0,0L108,0L108,108L0,108L0,0Z" />
+    
+    <!-- Decorative element - top right circle -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M108,0C108,0 108,30 78,30C48,30 78,0 78,0L108,0Z" />
+    
+    <!-- Decorative element - bottom left circle -->
+    <path
+        android:fillColor="#01579B"
+        android:pathData="M0,108C0,108 0,78 30,78C60,78 30,108 30,108L0,108Z" />
+    
+    <!-- Decorative wave pattern -->
+    <path
+        android:fillColor="#29B6F6"
+        android:pathData="M0,54C18,48 36,60 54,54C72,48 90,60 108,54L108,108L0,108L0,54Z" />
+</vector> 

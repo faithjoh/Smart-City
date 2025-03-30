@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- City skyline outline -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,65L30,65L30,57L34,57L34,50L38,50L38,57L42,57L42,52L46,52L46,65L52,65L52,45L55,45L55,38L60,38L60,45L65,45L65,61L70,61L70,49L74,49L74,65L80,65L80,70L24,70L24,65Z" />
+    
+    <!-- Parking sign circle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,32L54,32A22,22 0 0,1 76,54L76,54A22,22 0 0,1 54,76L54,76A22,22 0 0,1 32,54L32,54A22,22 0 0,1 54,32z" />
+    
+    <path
+        android:fillColor="#0277BD"
+        android:pathData="M54,37L54,37A17,17 0 0,1 71,54L71,54A17,17 0 0,1 54,71L54,71A17,17 0 0,1 37,54L37,54A17,17 0 0,1 54,37z" />
+    
+    <!-- Letter P -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M47,44L60,44L60,54C60,58 56.5,64 51,64L47,64L47,44ZM52,48L52,60L51,60C49,60 51,54 51,54L51,48L52,48Z" />
+    
+    <!-- Car icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M74,72L77,72L77,75L74,75L74,72ZM31,72L34,72L34,75L31,75L31,72ZM36,77L72,77L72,82L36,82L36,77ZM32,80C32,83.5 35,86 38,86C41,86 44,83.5 44,80L32,80ZM64,80C64,83.5 67,86 70,86C73,86 76,83.5 76,80L64,80Z" />
+</vector> 

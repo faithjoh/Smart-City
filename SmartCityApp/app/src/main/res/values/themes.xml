@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.SmartCityApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        
+        <!-- Font styles -->
+        <item name="android:textViewStyle">@style/Widget.SmartCityApp.TextView</item>
+        <item name="materialButtonStyle">@style/Widget.SmartCityApp.Button</item>
+    </style>
+    
+    <!-- Dialog theme -->
+    <style name="Theme.SmartCityApp.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+    
+    <!-- Text style -->
+    <style name="Widget.SmartCityApp.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <!-- Button style -->
+    <style name="Widget.SmartCityApp.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    
+    <!-- Headline text style -->
+    <style name="TextAppearance.SmartCityApp.Headline" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <!-- Subtitle text style -->
+    <style name="TextAppearance.SmartCityApp.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/secondary_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <style name="DialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowSoftInputMode">stateUnchanged</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <!-- High Contrast Theme for Accessibility -->
+    <style name="Theme.SmartCityApp.HighContrast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/high_contrast_accent</item>
+        <item name="colorPrimaryVariant">@color/high_contrast_accent</item>
+        <item name="colorOnPrimary">@color/high_contrast_background</item>
+        <item name="colorSecondary">@color/high_contrast_accent</item>
+        <item name="colorSecondaryVariant">@color/high_contrast_accent</item>
+        <item name="colorOnSecondary">@color/high_contrast_background</item>
+        <item name="android:colorBackground">@color/high_contrast_background</item>
+        <item name="colorOnBackground">@color/high_contrast_text</item>
+        <item name="colorSurface">@color/high_contrast_background</item>
+        <item name="colorOnSurface">@color/high_contrast_text</item>
+        <item name="colorError">@color/high_contrast_error</item>
+        <item name="colorOnError">@color/high_contrast_text</item>
+        <item name="android:statusBarColor">@color/high_contrast_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textColor">@color/high_contrast_text</item>
+        <item name="android:textColorPrimary">@color/high_contrast_text</item>
+        <item name="android:textColorSecondary">@color/high_contrast_text</item>
+        <item name="android:textColorHint">@color/high_contrast_text</item>
+        <item name="colorControlNormal">@color/high_contrast_accent</item>
+        <item name="colorControlActivated">@color/high_contrast_accent</item>
+        <item name="colorControlHighlight">@color/high_contrast_accent</item>
+        <item name="android:textViewStyle">@style/TextAppearance.SmartCityApp.HighContrast</item>
+        <item name="buttonStyle">@style/Widget.SmartCityApp.Button.HighContrast</item>
+        <item name="android:editTextStyle">@style/Widget.SmartCityApp.EditText.HighContrast</item>
+        <item name="checkboxStyle">@style/Widget.SmartCityApp.CheckBox.HighContrast</item>
+        <item name="radioButtonStyle">@style/Widget.SmartCityApp.RadioButton.HighContrast</item>
+    </style>
+
+    <style name="TextAppearance.SmartCityApp.HighContrast" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/high_contrast_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.SmartCityApp.Button.HighContrast" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/high_contrast_button_text</item>
+        <item name="backgroundTint">@color/high_contrast_button</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.SmartCityApp.EditText.HighContrast" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:textColor">@color/high_contrast_text</item>
+        <item name="android:textColorHint">@color/high_contrast_text</item>
+        <item name="android:background">@color/high_contrast_background</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.SmartCityApp.CheckBox.HighContrast" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="android:textColor">@color/high_contrast_text</item>
+        <item name="buttonTint">@color/high_contrast_accent</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.SmartCityApp.RadioButton.HighContrast" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:textColor">@color/high_contrast_text</item>
+        <item name="buttonTint">@color/high_contrast_accent</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources> 

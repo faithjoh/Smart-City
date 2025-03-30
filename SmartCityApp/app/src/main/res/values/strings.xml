@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart City Parking</string>
+    
+    <!-- Login and Registration -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login_failed">Login failed</string>
+    <string name="register_failed">Registration failed</string>
+    <string name="passwords_not_match">Passwords do not match</string>
+    <string name="create_account">Create New Account</string>
+    <string name="name">Name</string>
+    <string name="license_plate">License Plate</string>
+    <string name="register_success">Registration successful!</string>
+    <string name="invalid_email_format">Please enter a valid email address</string>
+    
+    <!-- Main Interface -->
+    <string name="home">Home</string>
+    <string name="map">Map</string>
+    <string name="payment">Payment</string>
+    <string name="profile">Profile</string>
+    <string name="search_hint">Enter postcode or address</string>
+    
+    <!-- Parking Information -->
+    <string name="parking_name">Parking Name</string>
+    <string name="parking_address">Address</string>
+    <string name="parking_rate">Rating</string>
+    <string name="parking_price">Price</string>
+    <string name="parking_capacity">Available Spaces</string>
+    <string name="parking_hours">Opening Hours</string>
+    <string name="navigate">Navigate</string>
+    <string name="book">Book Now</string>
+    <string name="reviews">Reviews</string>
+    
+    <!-- Payment -->
+    <string name="payment_history">Payment History</string>
+    <string name="add_card">Add Payment Method</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiry_date">Expiration Date</string>
+    <string name="cvv">CVV</string>
+    <string name="card_holder_name">Cardholder Name</string>
+    <string name="already_paid">ALREADY PAID</string>
+    <string name="pay_now">PAY NOW</string>
+    
+    <!-- Profile -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">LOGOUT</string>
+    <string name="user_name">Name</string>
+    <string name="user_phone">Phone</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Map -->
+    <string name="smart_parking_map">SMART PARKING MAP</string>
+    
+    <!-- Accessibility -->
+    <string name="increase_text_size">Increase text size</string>
+    <string name="toggle_high_contrast">Toggle high contrast mode</string>
+    <string name="accessibility_options">Accessibility options</string>
+    <string name="text_size_increased">Text size increased</string>
+    <string name="text_size_normal">Text size restored to normal</string>
+    <string name="high_contrast_enabled">High contrast mode enabled</string>
+    <string name="high_contrast_disabled">Normal contrast mode enabled</string>
+    <string name="tutorial_image_desc">Tutorial illustration showing app features</string>
+    <string name="tab_indicator_desc">Page indicators, swipe left or right to navigate tutorial pages</string>
+    <string name="btn_previous_desc">Go to previous tutorial page</string>
+    <string name="btn_skip_desc">Skip tutorial and go to main app</string>
+    <string name="btn_next_desc">Go to next tutorial page</string>
+    <string name="btn_finish_desc">Complete tutorial and start using the app</string>
+    <string name="text_size_label">Text Size</string>
+    <string name="high_contrast_label">High Contrast</string>
+    
+    <!-- Additional Accessibility Strings -->
+    <string name="screen_reader_options">Screen Reader Options</string>
+    <string name="talkback_support">TalkBack Support</string>
+    <string name="voice_navigation">Voice Navigation</string>
+    <string name="reduced_motion">Reduced Motion</string>
+    <string name="reduced_motion_enabled">Reduced animations and motion effects</string>
+    <string name="reduced_motion_disabled">Standard animations enabled</string>
+    <string name="accessibility_font_options">Font Options</string>
+    <string name="dyslexic_font">Dyslexia-friendly Font</string>
+    <string name="dyslexic_font_enabled">Dyslexia-friendly font enabled</string>
+    <string name="dyslexic_font_disabled">Standard font enabled</string>
+    <string name="content_desc_parking_marker">Parking location marker</string>
+    <string name="content_desc_user_location">Your current location</string>
+    <string name="content_desc_add_license_plate">Add new license plate</string>
+    <string name="content_desc_payment_card">Payment card information</string>
+    <string name="content_desc_close_dialog">Close dialog</string>
+    <string name="content_desc_search_location">Search for location</string>
+    <string name="content_desc_toggle_accessibility">Open accessibility options</string>
+    
+    <!-- User Agreement -->
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="terms_and_conditions_prompt">I have read and agree to the Terms and Conditions</string>
+    <string name="read_terms">Read Terms</string>
+    <string name="error_accept_terms">You must accept the Terms and Conditions to register</string>
+    <string name="terms_and_conditions_title">Terms and Conditions</string>
+    <string name="terms_and_conditions_close">Close</string>
+    <string name="terms_and_conditions_text">
+        "SMART CITY PARKING APP - TERMS AND CONDITIONS\n\n
+        
+        Last Updated: April 1, 2024\n\n
+        
+        These Terms and Conditions (\"Terms\") govern your use of the Smart City Parking App (the \"App\") operated by Smart City Solutions Ltd, a company registered in the United Kingdom with company number 12345678 and registered office at 123 Innovation Street, London, EC1A 1AA (\"we\", \"our\", or \"us\").\n\n
+        
+        BY ACCESSING OR USING THE APP, YOU AGREE TO BE BOUND BY THESE TERMS. IF YOU DO NOT AGREE TO THESE TERMS, PLEASE DO NOT USE THE APP.\n\n
+        
+        1. ACCEPTANCE OF TERMS\n
+        By downloading, installing, or using the App, you acknowledge that you have read, understood, and agree to be bound by these Terms, as well as our Privacy Policy. If you are using the App on behalf of an organisation, you represent and warrant that you have the authority to bind that organisation to these Terms.\n\n
+        
+        2. CHANGES TO TERMS\n
+        We reserve the right to modify these Terms at any time. Any changes will be effective immediately upon posting the updated Terms in the App. Your continued use of the App after the posting of any changes constitutes your acceptance of such changes.\n\n
+        
+        3. ELIGIBILITY\n
+        You must be at least 18 years of age to use the App. By using the App, you represent and warrant that you are at least 18 years old and that you have the legal capacity to enter into these Terms.\n\n
+        
+        4. ACCOUNT REGISTRATION\n
+        To use certain features of the App, you must register for an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete. You are responsible for safeguarding your password and for all activities that occur under your account. You agree not to disclose your password to any third party.\n\n
+        
+        5. VEHICLE REGISTRATION\n
+        You agree to provide accurate vehicle registration details when using the App. Providing false vehicle information may result in parking fines, legal action, or termination of your account.\n\n
+        
+        6. PARKING SERVICES\n
+        The App provides information about parking locations, availability, and fees. While we strive to provide accurate information, we do not guarantee the availability of parking spaces or the accuracy of parking information. You are responsible for complying with all applicable parking regulations and payment requirements.\n\n
+        
+        7. PAYMENT\n
+        a. By using the payment features of the App, you agree to pay all fees and charges associated with your parking transactions.\n
+        b. All payments are processed through our payment service providers. Your use of these payment services is subject to their terms and conditions.\n
+        c. You represent and warrant that you are authorised to use the payment method you provide and that the payment information you provide is accurate.\n\n
+        
+        8. REFUNDS\n
+        Refund policies for parking fees are subject to the policies of the individual car park operators. Please contact the relevant operator directly for information about refunds.\n\n
+        
+        9. AUTOMATIC NUMBER PLATE RECOGNITION (ANPR)\n
+        Our App uses Automatic Number Plate Recognition (ANPR) technology to facilitate entry and exit to car parks and to calculate parking fees. By using our App, you consent to the collection and processing of your vehicle's registration information for these purposes.\n\n
+        
+        10. DATA COLLECTION AND LOCATION SERVICES\n
+        a. Device Information: The App collects your device ID, type, model, operating system version, and other technical information about your device. This information is used for security, troubleshooting, analytics, and to improve our services.\n
+        b. Location Data: The App collects and processes your precise location data to provide you with location-based services, such as finding nearby parking facilities, navigation assistance, and localized notifications. This location data is collected only when the App is in use and with your consent.\n
+        c. Usage Logs: We maintain logs of your activity within the App, including interactions, searches, parking sessions, and feature usage. These logs help us analyze user behavior, identify trends, troubleshoot issues, and improve our services.\n
+        d. Data Retention: We retain your device information, location data, and usage logs for a period of 12 months, after which the data is either anonymized or deleted.\n
+        e. Data Sharing: We may share anonymized and aggregated data with third parties for research, analytics, and improvement of urban mobility solutions. We do not sell your personal data to third parties.\n\n
+        
+        11. INTELLECTUAL PROPERTY RIGHTS\n
+        The App and its content, features, and functionality are owned by us, our licensors, or other providers and are protected by UK and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws. You may not copy, modify, create derivative works, publicly display, publicly perform, republish, or transmit any material from the App without our prior written consent.\n\n
+        
+        12. USER CONTENT\n
+        Any content that you submit, post, or display on or through the App (\"User Content\") is subject to our review and moderation. We reserve the right to remove any User Content that violates these Terms or that we determine, in our sole discretion, is harmful, offensive, or otherwise inappropriate.\n\n
+        
+        13. PROHIBITED ACTIVITIES\n
+        You agree not to:\n
+        a. Use the App for any illegal purpose or in violation of any local, state, national, or international law;\n
+        b. Violate or encourage others to violate the rights of third parties, including intellectual property rights;\n
+        c. Attempt to gain unauthorised access to the App or our systems;\n
+        d. Interfere with or disrupt the operation of the App or our servers;\n
+        e. Transmit any viruses, malware, or other malicious code;\n
+        f. Use any automated means to access or use the App;\n
+        g. Impersonate any person or entity.\n\n
+        
+        14. TERMINATION\n
+        We reserve the right to terminate or suspend your account and access to the App at any time, without notice, for any reason, including if we believe that you have violated these Terms.\n\n
+        
+        15. DISCLAIMERS\n
+        THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.\n\n
+        
+        16. LIMITATION OF LIABILITY\n
+        TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT SHALL WE BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF OR RELATING TO YOUR USE OF OR INABILITY TO USE THE APP.\n\n
+        
+        17. INDEMNIFICATION\n
+        You agree to indemnify, defend, and hold harmless us, our affiliates, and our respective officers, directors, employees, agents, and representatives from and against any claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys\' fees) arising from or relating to your use of the App or your violation of these Terms.\n\n
+        
+        18. GOVERNING LAW\n
+        These Terms shall be governed by and construed in accordance with the laws of England and Wales, without regard to its conflict of law provisions. Any dispute arising out of or relating to these Terms or your use of the App shall be subject to the exclusive jurisdiction of the courts of England and Wales.\n\n
+        
+        19. SEVERABILITY\n
+        If any provision of these Terms is held to be invalid or unenforceable, such provision shall be struck out and the remaining provisions shall be enforced.\n\n
+        
+        20. ENTIRE AGREEMENT\n
+        These Terms, together with our Privacy Policy, constitute the entire agreement between you and us regarding your use of the App.\n\n
+        
+        21. CONTACT INFORMATION\n
+        If you have any questions about these Terms, please contact us at support@smartcityparkingapp.co.uk.\n\n
+        
+        Thank you for using the Smart City Parking App."
+    </string>
+    
+    <!-- Data Collection -->
+    <string name="data_collection_consent">Data Collection Consent</string>
+    <string name="location_permission_rationale">We need your location to help you find nearby parking spots, navigate to selected locations, and provide accurate parking information.</string>
+    <string name="device_id_collection_notice">Your device ID will be collected for security and to improve your experience. This helps us protect your account and personalize services.</string>
+    <string name="log_collection_notice">Usage activity will be logged to improve app functionality and provide better service.</string>
+</resources> 

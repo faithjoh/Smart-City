@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="8dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/notification_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@android:drawable/ic_dialog_info"
+        android:tint="#1976D2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/notification_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/notification_time"
+        app:layout_constraintStart_toEndOf="@id/notification_icon"
+        app:layout_constraintTop_toTopOf="@id/notification_icon"
+        tools:text="Payment Reminder" />
+
+    <TextView
+        android:id="@+id/notification_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/notification_icon"
+        app:layout_constraintTop_toBottomOf="@id/notification_title"
+        tools:text="Your AA19 HSV license plate parking fee of £75.00 has been paid successfully!" />
+
+    <TextView
+        android:id="@+id/notification_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/notification_title"
+        tools:text="10 minutes ago" />
+
+    <View
+        android:id="@+id/unread_indicator"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/unread_indicator"
+        app:layout_constraintBottom_toBottomOf="@id/notification_title"
+        app:layout_constraintEnd_toStartOf="@id/notification_title"
+        app:layout_constraintStart_toEndOf="@id/notification_icon"
+        app:layout_constraintTop_toTopOf="@id/notification_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="#E0E0E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notification_message" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

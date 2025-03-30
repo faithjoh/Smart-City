@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Registration/Login & Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .form-section {
+      display: none;
+      margin-bottom: 20px;
+    }
+    .form-section.active {
+      display: block;
+    }
+    input {
+      padding: 8px;
+      width: 250px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+    }
+    a {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    #message, #regMessage, #loginMessage {
+      color: red;
+    }
+    .hint {
+      color: gray;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Registration Section -->
+  <div id="registrationDiv" class="form-section">
+    <h1>Admin Registration</h1>
+    <input type="email" id="regEmail" placeholder="Enter admin email" /><br/>
+    <input type="password" id="regPassword" placeholder="Enter password" /><br/>
+    <!-- Added password length hint -->
+    <div class="hint">Password must be at least 6 characters long.</div>
+    <button id="registerBtn">Register</button>
+    <p>Already have an account? <a id="showLoginLink">Login here</a></p>
+    <div id="regMessage"></div>
+  </div>
+
+  <!-- Login Section -->
+  <div id="loginDiv" class="form-section active">
+    <h1>Admin Login</h1>
+    <input type="email" id="loginEmail" placeholder="Enter admin email" /><br/>
+    <input type="password" id="loginPassword" placeholder="Enter password" /><br/>
+    <button id="loginBtn">Login</button>
+    <p>Don't have an account? <a id="showRegisterLink">Register here</a></p>
+    <div id="loginMessage"></div>
+  </div>
+
+  <!-- Admin Dashboard Section -->
+  <div id="adminDiv" class="form-section">
+    <h1>Admin Dashboard</h1>
+    <div id="adminInfo"></div>
+    <button id="logoutBtn">Logout</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Document ID</th>
+          <th>Plate Number</th>
+          <th>Entry Time</th>
+          <th>Exit Time</th>
+          <th>Fee</th>
+        </tr>
+      </thead>
+      <tbody id="recordsTableBody">
+        <!-- Real-time data will be populated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script type="module">
+    // Import Firebase modules (Modular SDK)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+    // Your Firebase configuration (replace with your actual config)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB7KmELhy13G7ThjqR1LyCL4aBmPEljVIg",
+      authDomain: "parking-3e319.firebaseapp.com",
+      projectId: "parking-3e319",
+      storageBucket: "parking-3e319.firebasestorage.app",
+      messagingSenderId: "1019635069018",
+      appId: "1:1019635069018:web:73eca60da52adb8665e863",
+      measurementId: "G-8ZK7N71MJ5"
+    };
+
+    // Initialize Firebase App and services
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // DOM elements for registration, login, and admin dashboard
+    const registrationDiv = document.getElementById("registrationDiv");
+    const loginDiv = document.getElementById("loginDiv");
+    const adminDiv = document.getElementById("adminDiv");
+    const regEmail = document.getElementById("regEmail");
+    const regPassword = document.getElementById("regPassword");
+    const registerBtn = document.getElementById("registerBtn");
+    const regMessage = document.getElementById("regMessage");
+    const loginEmail = document.getElementById("loginEmail");
+    const loginPassword = document.getElementById("loginPassword");
+    const loginBtn = document.getElementById("loginBtn");
+    const loginMessage = document.getElementById("loginMessage");
+    const showRegisterLink = document.getElementById("showRegisterLink");
+    const showLoginLink = document.getElementById("showLoginLink");
+    const adminInfo = document.getElementById("adminInfo");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const recordsTableBody = document.getElementById("recordsTableBody");
+
+    // Utility functions to switch views
+    function showRegistration() {
+      registrationDiv.classList.add("active");
+      loginDiv.classList.remove("active");
+      adminDiv.classList.remove("active");
+    }
+
+    function showLogin() {
+      loginDiv.classList.add("active");
+      registrationDiv.classList.remove("active");
+      adminDiv.classList.remove("active");
+    }
+
+    function showAdminDashboard() {
+      adminDiv.classList.add("active");
+      loginDiv.classList.remove("active");
+      registrationDiv.classList.remove("active");
+    }
+
+    // Registration button event handler with password length validation
+    registerBtn.addEventListener("click", async () => {
+      const email = regEmail.value;
+      const password = regPassword.value;
+      // Validate password length
+      if (password.length < 6) {
+        regMessage.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        regMessage.textContent = "Registration successful! Redirecting to dashboard...";
+        // Auto-login and redirect to dashboard after registration
+        setTimeout(() => {
+          showAdminDashboard();
+        }, 2000);
+      } catch (error) {
+        regMessage.textContent = "Registration failed: " + error.message;
+      }
+    });
+
+    // Login button event handler
+    loginBtn.addEventListener("click", async () => {
+      const email = loginEmail.value;
+      const password = loginPassword.value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        loginMessage.textContent = "Login successful! Redirecting...";
+      } catch (error) {
+        loginMessage.textContent = "Login failed: " + error.message;
+      }
+    });
+
+    // Toggle link events
+    showRegisterLink.addEventListener("click", showRegistration);
+    showLoginLink.addEventListener("click", showLogin);
+
+    // Monitor auth state changes
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // If user is logged in, show admin dashboard
+        showAdminDashboard();
+        adminInfo.textContent = "Welcome, " + user.email;
+        // Set up real-time listener for parkingRecords collection in Firestore
+        onSnapshot(collection(db, 'parkingRecords'), (snapshot) => {
+          console.log("Received snapshot with", snapshot.docs.length, "documents.");
+          let html = '';
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            html += `
+              <tr>
+                <td>${doc.id}</td>
+                <td>${data.plateNumber || ''}</td>
+                <td>${data.entryTime || ''}</td>
+                <td>${data.exitTime || ''}</td>
+                <td>${data.paidAmount ? '£' + data.paidAmount : ''}</td>
+              </tr>
+            `;
+          });
+          recordsTableBody.innerHTML = html;
+        });
+      } else {
+        // If not logged in, show login form
+        showLogin();
+      }
+    });
+
+    // Logout button event handler
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Error during sign-out:", error);
+      }
+    });
+  </script>
+</body>
+</html>

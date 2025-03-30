@@ -1,0 +1,61 @@
+# Gradle build directory
+.gradle/
+build/
+
+# Local configuration
+local.properties
+
+# Android Studio generated files
+.idea/
+.externalNativeBuild/
+captures/
+.navigation/
+output-metadata.json
+
+# Compiled files
+*.apk
+*.aab
+*.ap_
+*.class
+*.dex
+
+# Generated files
+bin/
+gen/
+out/
+
+# Log Files
+*.log
+*.hprof
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+*.so
+.Python
+.env
+.venv
+env/
+venv/
+ENV/
+.cursor/
+
+# Virtual environment
+.vscode/
+
+# Firebase config (may contain sensitive data)
+# google-services.json - Uncomment if you want to exclude
+google-services.json
+serviceAccountKey.json
+*serviceAccountKey*.json
+
+# Large datasets/temporary files
+UKLicencePlateDataset/
+*.apk

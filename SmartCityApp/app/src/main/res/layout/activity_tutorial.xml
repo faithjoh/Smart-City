@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8FDF8"
+    android:importantForAccessibility="yes"
+    tools:context=".ui.TutorialActivity">
+
+    <LinearLayout
+        android:id="@+id/accessibility_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center"
+        android:background="#E8F5E9"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/accessibility_button_background"
+            android:padding="4dp">
+
+            <ImageButton
+                android:id="@+id/btn_increase_text"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/increase_text_size"
+                android:padding="12dp"
+                android:src="@drawable/ic_accessibility_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/text_size_label"
+                android:textColor="#006400"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/accessibility_button_background"
+            android:layout_marginStart="16dp"
+            android:padding="4dp">
+
+            <ImageButton
+                android:id="@+id/btn_high_contrast"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/toggle_high_contrast"
+                android:padding="12dp"
+                android:src="@drawable/ic_accessibility_contrast" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/high_contrast_label"
+                android:textColor="#006400"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/tutorial_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintTop_toBottomOf="@id/accessibility_controls"
+        app:layout_constraintBottom_toTopOf="@id/tab_indicator"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/tutorial_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/tutorial_image_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accessibility_controls"
+        android:background="@drawable/tutorial_image_background"
+        android:padding="30dp"
+        android:src="@drawable/tutorial_welcome_icon" />
+
+    <TextView
+        android:id="@+id/tutorial_heading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="Welcome to Smart City Parking"
+        android:textColor="#2E7D32"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:importantForAccessibility="yes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_image" />
+
+    <TextView
+        android:id="@+id/tutorial_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="Smart City Parking helps you find and pay for parking spaces in the city. Let's see how it works!"
+        android:textColor="#555555"
+        android:textSize="18sp"
+        android:lineSpacingExtra="6dp"
+        android:importantForAccessibility="yes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_heading" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/tab_indicator_desc"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="8dp"
+        app:tabPaddingStart="8dp" />
+
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_previous"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Previous"
+            android:textAllCaps="false"
+            android:textColor="#4CAF50"
+            android:contentDescription="@string/btn_previous_desc"
+            android:drawableStart="@drawable/ic_btn_previous"
+            android:drawablePadding="8dp"
+            android:minHeight="48dp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_skip"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Skip"
+            android:textColor="#757575"
+            android:contentDescription="@string/btn_skip_desc"
+            android:drawableEnd="@drawable/ic_btn_skip"
+            android:drawablePadding="8dp"
+            android:minHeight="48dp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Next"
+            android:drawableEnd="@drawable/ic_btn_next"
+            android:drawablePadding="8dp"
+            android:textColor="#FFFFFF"
+            android:elevation="2dp"
+            android:contentDescription="@string/btn_next_desc"
+            android:minHeight="48dp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Get Started"
+            android:drawableEnd="@drawable/ic_btn_finish"
+            android:drawablePadding="8dp"
+            android:textColor="#FFFFFF"
+            android:elevation="2dp"
+            android:contentDescription="@string/btn_finish_desc"
+            android:minHeight="48dp"
+            android:textAllCaps="false"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

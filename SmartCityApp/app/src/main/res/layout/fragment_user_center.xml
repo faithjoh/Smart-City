@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    android:fadeScrollbars="false"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Title Bar -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#4285F4">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_person"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- User Information Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="#4285F4"/>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Information"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#4285F4"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+
+                <!-- Name Section with Edit Option -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="#757575"
+                        android:layout_gravity="center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Name:"
+                            android:textSize="14sp"
+                            android:textStyle="bold" 
+                            android:textColor="#757575"/>
+
+                        <TextView
+                            android:id="@+id/user_name_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/user_name_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter your name"
+                            android:inputType="textPersonName"
+                            android:visibility="gone"
+                            android:layout_marginTop="4dp"
+                            android:padding="8dp"
+                            android:textSize="16sp"
+                            android:background="@drawable/edit_text_background" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Email Section with Edit Option -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_email"
+                        app:tint="#757575"
+                        android:layout_gravity="center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email:"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="#757575" />
+
+                        <TextView
+                            android:id="@+id/user_email_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textSize="16sp"
+                            android:layout_marginTop="4dp" />
+
+                        <TextView
+                            android:id="@+id/email_update_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email updates require verification"
+                            android:textSize="12sp"
+                            android:textColor="#757575"
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- License Plate Section with Edit Option -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_directions_car"
+                        app:tint="#757575"
+                        android:layout_gravity="center_vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="License Plate:"
+                            android:textSize="14sp"
+                            android:textStyle="bold" 
+                            android:textColor="#757575"/>
+
+                        <TextView
+                            android:id="@+id/license_plate_status_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="No license plate set"
+                            android:textSize="16sp"
+                            android:textColor="#4285F4"
+                            android:layout_marginTop="4dp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/license_plate_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Enter license plate number"
+                            android:inputType="textCapCharacters"
+                            android:visibility="gone"
+                            android:layout_marginTop="4dp"
+                            android:padding="8dp"
+                            android:textSize="16sp"
+                            android:background="@drawable/edit_text_background" />
+                            
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/add_plate_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:text="ADD LICENSE PLATE"
+                            android:textSize="14sp"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#4285F4"
+                            app:cornerRadius="4dp"
+                            app:icon="@drawable/ic_add"
+                            app:iconGravity="textStart"
+                            app:iconTint="#FFFFFF"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Edit Mode Buttons (initially hidden) -->
+                <LinearLayout
+                    android:id="@+id/save_cancel_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/save_profile_button"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="SAVE"
+                        android:textSize="14sp"
+                        app:backgroundTint="#4CAF50"
+                        app:cornerRadius="4dp"
+                        app:icon="@drawable/ic_check"
+                        app:iconGravity="textStart"
+                        app:iconTint="#FFFFFF"
+                        android:layout_marginEnd="4dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cancel_edit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:text="CANCEL"
+                        android:textSize="14sp"
+                        app:backgroundTint="#9E9E9E"
+                        app:cornerRadius="4dp"
+                        app:icon="@drawable/ic_close"
+                        app:iconGravity="textStart"
+                        app:iconTint="#FFFFFF"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/update_email_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="UPDATE EMAIL"
+                    android:textSize="14sp"
+                    app:backgroundTint="#4285F4"
+                    app:cornerRadius="4dp"
+                    app:icon="@drawable/ic_email"
+                    app:iconGravity="textStart"
+                    app:iconTint="#FFFFFF"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/edit_profile_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="EDIT PROFILE"
+                    android:textSize="14sp"
+                    app:backgroundTint="#4285F4"
+                    app:cornerRadius="4dp"
+                    app:icon="@drawable/ic_edit"
+                    app:iconGravity="textStart"
+                    app:iconTint="#FFFFFF"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Current Order Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Order"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/order_info_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/order_license_plate_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="License Plate: --"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/order_entry_time_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Entry Time: --"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/order_exit_time_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Exit Time: --"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/order_fee_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fee: £0.00"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="#4285F4" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/no_order_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No active parking session"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/pay_now_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="@string/pay_now"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:enabled="true"
+                    android:drawableStart="@drawable/ic_pay_now"
+                    android:drawablePadding="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:gravity="center"
+                    android:elevation="4dp"
+                    android:background="@drawable/pay_button_background" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="LOGOUT"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:drawableStart="@drawable/ic_logout"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:elevation="4dp"
+            android:backgroundTint="#D50000"
+            android:background="@drawable/logout_button_background" />
+
+    </LinearLayout>
+</ScrollView> 

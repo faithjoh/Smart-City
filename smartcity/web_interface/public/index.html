@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City ANPR - Admin Panel</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="login-container" id="loginContainer">
+        <div class="login-form">
+            <h1>Admin Login</h1>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button id="loginBtn" class="btn primary-btn">Login</button>
+            <p class="form-link">Forgot your password? <a href="#" id="forgotPasswordLink">Reset it here</a></p>
+        </div>
+    </div>
+
+    <div class="dashboard-container hidden" id="dashboardContainer">
+        <header class="dashboard-header">
+            <div class="logo">
+                <h1>Smart City ANPR</h1>
+            </div>
+            <div class="user-info">
+                <span id="userEmail"></span>
+                <button id="logoutBtn" class="btn small-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <div class="sidebar">
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-target="dashboard">Dashboard</li>
+                    <li class="nav-item" data-target="plateReader">License Plate Reader</li>
+                    <li class="nav-item" data-target="database">Database Viewer</li>
+                </ul>
+            </div>
+
+            <div class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="content-section">
+                    <h2>Dashboard</h2>
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <h3>Total Vehicles</h3>
+                            <p class="stat-number" id="totalVehicles">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Parking</h3>
+                            <p class="stat-number" id="activeParking">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Revenue Today</h3>
+                            <p class="stat-number" id="revenueToday">£0.00</p>
+                        </div>
+                    </div>
+                    <div class="quick-actions">
+                        <h3>Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button class="btn primary-btn" id="goToPlateReaderBtn">Plate Reader</button>
+                            <button class="btn secondary-btn" id="goToDatabaseBtn">View Database</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- License Plate Reader Section -->
+                <section id="plateReader" class="content-section hidden">
+                    <h2>License Plate Reader</h2>
+                    <div class="upload-container">
+                        <div class="upload-box">
+                            <h3>Upload Image</h3>
+                            <div class="upload-area" id="uploadArea">
+                                <p>Drag & drop an image here or</p>
+                                <label for="imageUpload" class="btn secondary-btn">Select File</label>
+                                <input type="file" id="imageUpload" accept="image/*" hidden>
+                            </div>
+                            <div class="or-divider">
+                                <span>OR</span>
+                            </div>
+                            <div class="folder-selection">
+                                <h3>Select from Default Folder</h3>
+                                <button class="btn secondary-btn" id="selectFromFolderBtn">Browse Folder</button>
+                            </div>
+                        </div>
+                        <div class="process-image-card">
+                            <h3>Process Image</h3>
+                            <div id="imagePreview">
+                                <img src="https://raw.githubusercontent.com/user/smartcity-anpr/main/samples/AA70PYY.jpg" alt="Example UK License Plate" id="exampleImage">
+                            </div>
+                            <div class="button-container">
+                                <button id="startReadingBtn" class="btn primary-btn">Start Reading</button>
+                                <button id="useExampleBtn" class="btn outline-btn">Use Example Image</button>
+                            </div>
+                            <div id="processingStatus" class="status">
+                                <p>Status: Ready</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="results-container hidden" id="resultsContainer">
+                        <h3>Recognition Results</h3>
+                        <div class="results-table">
+                            <table id="resultsTable" class="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>License Plate</th>
+                                        <th>Country Identifier</th>
+                                        <th>Confidence</th>
+                                        <th>Image</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Recognition results will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="results-actions">
+                            <button class="btn secondary-btn" id="saveResultsBtn">Save to Database</button>
+                            <button class="btn primary-btn" id="newReadingBtn">New Reading</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Database Viewer Section -->
+                <section id="database" class="content-section hidden">
+                    <h2>Database Viewer</h2>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label for="dateFilter">Date:</label>
+                            <input type="date" id="dateFilter">
+                        </div>
+                        <div class="filter-group">
+                            <label for="plateFilter">Plate Number:</label>
+                            <input type="text" id="plateFilter" placeholder="Enter plate number">
+                        </div>
+                        <button class="btn secondary-btn" id="applyFilterBtn">Apply Filter</button>
+                        <button class="btn outline-btn" id="resetFilterBtn">Reset</button>
+                    </div>
+                    <div class="database-table">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>License Plate</th>
+                                    <th>Country Identifier</th>
+                                    <th>Entry Time</th>
+                                    <th>Exit Time / Info</th>
+                                    <th>Fee / Details</th>
+                                    <th>Payment Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="plateDataBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button class="btn outline-btn" id="prevPageBtn">Previous</button>
+                        <span id="paginationInfo">Page 1 of 1</span>
+                        <button class="btn outline-btn" id="nextPageBtn">Next</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for displaying messages -->
+    <div class="modal hidden" id="messageModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h3 id="modalTitle">Message</h3>
+            <p id="modalMessage"></p>
+            <button class="btn primary-btn" id="modalOkBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- Modal for password reset -->
+    <div class="modal hidden" id="passwordResetModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closePasswordResetModal">&times;</span>
+            <h3>Reset Password</h3>
+            <p>Enter your email address to receive a password reset link.</p>
+            <div class="form-group">
+                <label for="resetEmail">Email:</label>
+                <input type="email" id="resetEmail" placeholder="Enter your email">
+            </div>
+            <button class="btn primary-btn" id="sendResetLinkBtn">Send Reset Link</button>
+        </div>
+    </div>
+
+    <script src="../src/firebase-config.js"></script>
+    <script src="../src/auth.js"></script>
+    <script src="../src/dashboard.js"></script>
+    <script src="../src/plate-reader.js"></script>
+    <script src="../src/database-viewer.js"></script>
+    <script src="../src/main.js"></script>
+    <script>
+        // Add example image functionality after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the example image button
+            const useExampleBtn = document.getElementById('useExampleBtn');
+            if (useExampleBtn) {
+                useExampleBtn.addEventListener('click', function() {
+                    // Get the example image
+                    const exampleImg = document.getElementById('exampleImage');
+                    if (exampleImg && exampleImg.src) {
+                        // Convert image to Blob object
+                        fetch(exampleImg.src)
+                            .then(response => response.blob())
+                            .then(blob => {
+                                // Create a file object
+                                const file = new File([blob], "AA70PYY.jpg", { type: "image/jpeg" });
+                                // Simulate file selection
+                                const dataTransfer = new DataTransfer();
+                                dataTransfer.items.add(file);
+                                const fileInput = document.getElementById('imageUpload');
+                                if (fileInput) {
+                                    fileInput.files = dataTransfer.files;
+                                    // Trigger change event
+                                    const event = new Event('change', { bubbles: true });
+                                    fileInput.dispatchEvent(event);
+                                }
+                            })
+                            .catch(error => console.error('Error fetching example image:', error));
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
