@@ -206,9 +206,9 @@ Firebase Root
 └── ...
 ```
 
-Google map API Key:AIzaSyBANrmjCX9cNZcJC_aUO7UKZnZjMY7KnY0
-Strip 公钥 pk_test_51R5tjcB0X5aGtngh2WehxbpvGjC8lbscoAtO8ThwAaYXUArhfW52Qs1Qhbljuj6EwIO6q96IIqXtZ7x4hKMSO1pA00n8Y147FM
-Strip 密钥 sk_test_51R5tjcB0X5aGtnghsYGESgJTXn7xuo2VUbFvxvv9n8opIA3WIyAvocORqTFnCTq1AXa3cpTFAifNmAyhpJdBp2Hq003lcUmf3y
+Google map API Key: AIzaSyBANrmjCX9cNZcJC_aUO7UKZnZjMY7KnY0
+Stripe Public Key: pk_test_51R5tjcB0X5aGtngh2WehxbpvGjC8lbscoAtO8ThwAaYXUArhfW52Qs1Qhbljuj6EwIO6q96IIqXtZ7x4hKMSO1pA00n8Y147FM
+Stripe Secret Key: sk_test_51R5tjcB0X5aGtnghsYGESgJTXn7xuo2VUbFvxvv9n8opIA3WIyAvocORqTFnCTq1AXa3cpTFAifNmAyhpJdBp2Hq003lcUmf3y
 
 firebase web SDK npm
 ```javascript
