@@ -199,8 +199,8 @@ class MainActivity : BaseActivity() {
     // Recursively apply text size to all TextView instances
     private fun applyTextSizeToView(view: View, scale: Float) {
         if (view is TextView) {
-            val defaultSize = view.textSize / view.paint.density  // 转换为sp
-            view.textSize = defaultSize * scale  // 应用缩放比例
+            val defaultSize = view.textSize / view.paint.density  // Convert to sp
+            view.textSize = defaultSize * scale  // Apply scaling factor
         } else if (view is ViewGroup) {
             for (i in 0 until view.childCount) {
                 applyTextSizeToView(view.getChildAt(i), scale)

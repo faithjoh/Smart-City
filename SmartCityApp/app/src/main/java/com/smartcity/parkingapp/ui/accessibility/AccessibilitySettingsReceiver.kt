@@ -34,21 +34,21 @@ class AccessibilitySettingsReceiver : BroadcastReceiver() {
     private fun applyAccessibilitySettings(app: SmartCityApplication) {
         // Apply text size
         rootView?.let { view ->
-            applyTextSize(view, app.getTextSize())
+            applyTextSizeToView(view, app.getTextSize())
         }
         
         // High contrast mode requires recreating the activity, handled by the activity itself
     }
     
-    private fun applyTextSize(view: View, scale: Float) {
+    private fun applyTextSizeToView(view: View, scale: Float) {
         if (view is TextView) {
-            // 修复: 使用绝对文本大小而不是基于当前尺寸的相对比例
-            val defaultSize = view.textSize / view.paint.density  // 转换为sp
-            view.textSize = defaultSize * scale  // 应用缩放比例
+            // Fix: Use absolute text size instead of relative scaling based on current size
+            val defaultSize = view.textSize / view.paint.density  // Convert to sp
+            view.textSize = defaultSize * scale  // Apply scaling factor
         } else if (view is ViewGroup) {
             // Process all child views recursively
             for (i in 0 until view.childCount) {
-                applyTextSize(view.getChildAt(i), scale)
+                applyTextSizeToView(view.getChildAt(i), scale)
             }
         }
     }
