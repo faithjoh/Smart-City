@@ -55,13 +55,13 @@ async function loadDashboardData() {
         // Get today's revenue
         let revenueSnapshot;
         try {
-            // 首先尝试使用新的查询条件
+            // First try using new query conditions
             revenueSnapshot = await db.collection('Orders')
                 .where('status', '==', 'paid')
                 .where('paymentDate', '>=', today)
                 .get();
                 
-            // 如果结果为空，尝试使用退出时间作为备选
+            // If results are empty, try using exitTime as fallback
             if (revenueSnapshot.empty) {
                 console.log('No orders found with status=paid and paymentDate>=today, falling back to exitTime');
                 revenueSnapshot = await db.collection('Orders')
@@ -69,7 +69,7 @@ async function loadDashboardData() {
                     .get();
             }
         } catch (error) {
-            // 如果查询失败（可能是字段不存在），退回到原来的查询方式
+            // If query fails (possibly field doesn't exist), fall back to original query method
             console.error('Error with paid orders query:', error);
             console.log('Falling back to default query');
             revenueSnapshot = await db.collection('Orders')
@@ -81,7 +81,7 @@ async function loadDashboardData() {
         let revenue = 0;
         const processedOrderIds = new Set(); // Track orders already processed
 
-        // 检查当前日期
+        // Check current date
         const currentDate = new Date();
         const currentDateString = currentDate.toISOString().split('T')[0];
         console.log(`Current date for revenue calculation: ${currentDateString}`);
@@ -90,11 +90,11 @@ async function loadDashboardData() {
             const data = doc.data();
             const orderId = doc.id;
             
-            // 检查订单的支付日期或退出时间是否为今天
+            // Check if the order's payment date or exit time is today
             let includeInRevenue = false;
             let reason = '';
             
-            // 检查支付日期
+            // Check payment date
             if (data.paymentDate && data.paymentDate.toDate) {
                 const paymentDate = data.paymentDate.toDate();
                 const paymentDateString = paymentDate.toISOString().split('T')[0];
@@ -104,7 +104,7 @@ async function loadDashboardData() {
                 }
             }
             
-            // 如果没有支付日期但有退出时间，检查退出时间
+            // If no payment date but exit time exists, check exit time
             if (!includeInRevenue && data.exitTime && data.exitTime.toDate) {
                 const exitTime = data.exitTime.toDate();
                 const exitTimeString = exitTime.toISOString().split('T')[0];
@@ -114,10 +114,10 @@ async function loadDashboardData() {
                 }
             }
             
-            // 检查订单状态
+            // Check order status
             const isPaid = data.status === 'paid';
             
-            // 只有已支付且日期匹配今天的订单才计入收入
+            // Only include paid orders from today in revenue
             if (includeInRevenue && isPaid && !processedOrderIds.has(orderId)) {
                 revenue += (data.fee || 0);
                 processedOrderIds.add(orderId);
