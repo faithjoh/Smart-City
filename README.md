@@ -119,7 +119,7 @@ An OCR program based on Python for automatic license plate recognition:
 
 
 
-##5. HOME
+### 5. HOME
 5.1. **Welcome/Greeting + User Overview**
 
 Provides a friendly and intuitive welcome interface in the form of "Welcome back, {username}".
@@ -133,6 +133,7 @@ Notifications include unpaid order reminders, parking entry/exit reminders, and 
 
 If there are new messages, display a red dot or number prompt to remind users to check.
 Users can click to view notification content
+
 5.4. **Beginner Guide/Tutorial Entry**
 
 For new users, if App functionality explanations are needed, a prominent "Beginner Tutorial" entry can be made in Home.
@@ -206,37 +207,6 @@ Firebase Root
 └── ...
 ```
 
-Google map API Key: AIzaSyBANrmjCX9cNZcJC_aUO7UKZnZjMY7KnY0
-Stripe Public Key: pk_test_51R5tjcB0X5aGtngh2WehxbpvGjC8lbscoAtO8ThwAaYXUArhfW52Qs1Qhbljuj6EwIO6q96IIqXtZ7x4hKMSO1pA00n8Y147FM
-Stripe Secret Key: sk_test_51R5tjcB0X5aGtnghsYGESgJTXn7xuo2VUbFvxvv9n8opIA3WIyAvocORqTFnCTq1AXa3cpTFAifNmAyhpJdBp2Hq003lcUmf3y
-
-firebase web SDK npm
-```javascript
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB7KmELhy13G7ThjqR1LyCL4aBmPEljVIg",
-  authDomain: "parking-3e319.firebaseapp.com",
-  projectId: "parking-3e319",
-  storageBucket: "parking-3e319.firebasestorage.app",
-  messagingSenderId: "1019635069018",
-  appId: "1:1019635069018:web:73eca60da52adb8665e863",
-  measurementId: "G-8ZK7N71MJ5"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-```
-
-
-
 ## Latest Achievements
 
 We have successfully implemented several key features and improvements to enhance the Smart City ANPR system:
@@ -255,5 +225,6 @@ We have successfully implemented several key features and improvements to enhanc
 9. **User Experience Improvements** - Removed duplicate texts in dialogs and improved UI consistency
 10. **Documentation Enhancement** - Updated documentation to be fully English-compatible for international users
 11. **Development Workflow Optimization** - Fixed compilation errors and warnings to ensure smooth development process
+12. **Project Structure Optimization** - Removed unnecessary ParkingSystem directory to streamline the project organization
 
 The random exit time generation (1-20 seconds) and fee calculation (£5 per second) functions have also been completed, providing simulated real-world scenario data for testing.
