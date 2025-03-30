@@ -1,73 +1,73 @@
 # Smart City with ANPR Parking System
 
-本项目是一个智能城市解决方案，集成了基于自动车牌识别（ANPR）的停车系统。该解决方案包含两个主要界面：
+This project is a smart city solution that integrates an Automatic Number Plate Recognition (ANPR) parking system. The solution consists of two main interfaces:
 
-1. **用户端（Android App）**  
-2. **管理端（Web 管理界面，含 ANPR 功能）**
+1. **User Interface (Android App)**  
+2. **Admin Interface (Web Management Interface with ANPR functionality)**
 
-所有注释与界面均面向英文用户，因此本文件中涉及的功能说明以英文为准，方便英文用户使用和维护。
+All comments and interfaces are tailored for English users, so the function descriptions in this document are in English for ease of use and maintenance by English users.
 
 ---
 
-## 目录
-- [概述](#概述)
-- [功能简介](#功能简介)
-  - [1. 用户端（Android App）](#1-用户端android-app)
-  - [2. 管理端（Web 管理界面）](#2-管理端web-管理界面)
-  - [3. ANPR 程序](#3-anpr-程序)
-- [使用技术](#使用技术)
-- [Firebase 数据结构（推荐）](#firebase-数据结构推荐)
-- [安装与使用](#安装与使用)
-- [使用说明](#使用说明)
+## Table of Contents
+- [Overview](#overview)
+- [Feature Introduction](#feature-introduction)
+  - [1. User Interface (Android App)](#1-user-interface-android-app)
+  - [2. Admin Interface (Web Management Interface)](#2-admin-interface-web-management-interface)
+  - [3. ANPR Program](#3-anpr-program)
+- [Technologies Used](#technologies-used)
+- [Firebase Data Structure (Recommended)](#firebase-data-structure-recommended)
+- [Installation and Usage](#installation-and-usage)
+- [Usage Instructions](#usage-instructions)
 - [License](#license)
 
 ---
 
-## 概述
-这是一个模拟智能停车场景的解决方案，利用了 ANPR（自动车牌识别）技术来简化停车管理流程。它包括：
+## Overview
+This is a solution that simulates a smart parking scenario, utilizing ANPR (Automatic Number Plate Recognition) technology to simplify parking management processes. It includes:
 
-- 面向用户的 **Android 应用**（注册、支付停车费用、地图定位、评论等）
-- 面向管理员的 **Web 管理界面**（监控车辆、读取车牌信息以及管理停车费用）
-- 基于 **OCR** 技术的 **ANPR 程序**（识别并处理车牌号码及国家标识）
+- A user-facing **Android application** (registration, parking fee payment, map location, reviews, etc.)
+- An admin-facing **Web management interface** (monitoring vehicles, reading license plate information, and managing parking fees)
+- An **ANPR program** based on **OCR** technology (recognizing and processing license plate numbers and country identifiers)
 
 ---
 
-## 功能简介
+## Feature Introduction
 
-### 1. 用户端（Android App）
-**用户端** 是一个安卓应用，提供注册、登录、查看附近停车场信息、支付停车费用、查看/提交停车评价等功能。
+### 1. User Interface (Android App)
+The **User Interface** is an Android application that provides functions such as registration, login, viewing nearby parking lots, paying parking fees, and viewing/submitting parking reviews.
 
-1.1 **用户注册与登录**  
-   - 用户通过 **邮箱/密码**、**ID Name** 及 **车牌号** 完成注册（默认车牌格式为英国车牌）。  
-   - 使用 [Firebase Authentication](https://firebase.google.com/docs/auth) 存储用户账号信息。  
-   - 提供密码找回功能（忘记密码），通过 Firebase 完成。  
+1.1 **User Registration and Login**  
+   - Users complete registration through **Email/Password**, **ID Name**, and **License Plate Number** (default plate format is UK license plate).  
+   - User account information is stored using [Firebase Authentication](https://firebase.google.com/docs/auth).  
+   - Password recovery function (forgot password) is completed through Firebase.  
 
-1.2 **地图与停车场位置**  
-   - 可在地图上查看英国地区约 20 个停车场分布。这些停车场必须是真实的停车场信息  
-   - 默认地图位置定位在 **伦敦（London, UK）**。  
-   - 支持通过 **邮编搜索** 在地图上展示搜索结果。  
-   - 停车场使用带有 "P" 标记的地图 Marker 显示。  
+1.2 **Map and Parking Lot Locations**  
+   - View the distribution of approximately 20 parking lots in the UK region on the map. These must be real parking lot information.  
+   - Default map location is set to **London, UK**.  
+   - Support for **Postcode Search** to display search results on the map.  
+   - Parking lots are displayed using map Markers with a "P" label.  
 
-1.3 **支付**  
-   - 应用中展示用户的 **进场时间**、**出场时间**（均从 Firebase 获取）。  
-   - 提示计算出的 **停车费用**（同样从 Firebase 获取）。  
-   - 集成演示用的 **Stripe API** 支付功能（仅作演示，不进行真实支付）。  
+1.3 **Payment**  
+   - The application displays the user's **Entry Time** and **Exit Time** (both retrieved from Firebase).  
+   - Prompts the calculated **Parking Fee** (also retrieved from Firebase).  
+   - Integrates **Stripe API** payment functionality for demonstration (demo only, no real payments).  
 
-1.4 **停车详情与评价**  
-   - 点击停车场 Marker 后弹出二级菜单/对话框，其中包含：  
-     - 停车场名称、地址、评级、价格、总车位数、开放时间等信息。  
-     - 导航按钮（可跳转到 Google Maps 等第三方导航应用）。  
-     - 用户评论区域：查看已有评论或添加新的反馈。  
-     -右上角要有关闭菜单的按键
+1.4 **Parking Details and Reviews**  
+   - After clicking on a parking lot Marker, a secondary menu/dialog appears, containing:  
+     - Parking lot name, address, rating, price, total spaces, opening hours, etc.  
+     - Navigation button (can redirect to third-party navigation applications like Google Maps).  
+     - User review section: view existing comments or add new feedback.  
+     - Close button in the top right corner to close the menu.
 
-1.5 **个人中心（User Center）**  
-   - 点击地图界面中的 **用户图标** 可进入个人中心，包含：  
-     - **用户信息**（用户名、邮箱、车牌号）并可进行修改。  
-       - 邮箱修改需要额外进行 Firebase 验证。  
-       - 其他信息修改同样存储于 Firebase。  
-     - **当前订单**（车牌号、开始时间等）以及 "Pay Now" 按钮来进行支付流程。  
-     -加入log out
-     -允许用户加入多个车牌信息
+1.5 **User Center**  
+   - Click on the **User Icon** in the map interface to enter the User Center, which includes:  
+     - **User Information** (username, email, license plate number) which can be modified.  
+       - Email modification requires additional Firebase verification.  
+       - Other information modifications are also stored in Firebase.  
+     - **Current Order** (license plate number, start time, etc.) and a "Pay Now" button to proceed with payment.  
+     - Log out functionality.
+     - Option to add multiple license plate information.
 
 1.6 **Payment History**
    - This section allows users to view the complete history of parking activities associated with their registered license plates.
@@ -80,87 +80,87 @@
    - The payment history is retrieved from Firebase Firestore using composite indexing for efficient queries
    - Implemented with a RecyclerView for smooth scrolling through potentially large lists of records
 
-### 2. 管理端（Web 管理界面）
-**管理端** 提供管理员登录、车牌信息处理与数据库数据查看的功能。
+### 2. Admin Interface (Web Management Interface)
+The **Admin Interface** provides functions for administrator login, license plate information processing, and database data viewing.
 
-2.1. **管理员登录与找回**  
-   - 管理员以 **邮箱** + **密码** 进行登录。  
-   - 提供邮箱找回密码功能。  
+2.1. **Admin Login and Recovery**  
+   - Administrators log in with **Email** + **Password**.  
+   - Email password recovery function is provided.  
 
-2.2 **主界面**  
-   - 显示 ANPR 流程与停车费用的概览。  
-   - 可前往车牌读取页面或数据库查看页面。  
+2.2 **Main Interface**  
+   - Displays an overview of the ANPR process and parking fees.  
+   - Access to the license plate reading page or database viewing page.  
 
-2.3 **车牌读取 / 上传界面**  
-   - 管理员可从本地上传图像，或从预定义文件夹中获取图像进行车牌识别。  
-   - 界面中展示图像转换为字符（OCR）过程。  
-   - 主要元素：**上传照片**、**开始读取**、**处理状态**、**结果显示**。  
-   - 读取结果展示识别到的车牌信息与国家标识(Country Identifier)，可返回主界面或到信息汇总页面。 
-   — 不是用户注册时上传的车牌信息不录入数据库中，要提示：没有注册过不允许入场
+2.3 **License Plate Reading/Upload Interface**  
+   - Administrators can upload images from local sources or get images from predefined folders for license plate recognition.  
+   - The interface displays the image-to-character (OCR) process.  
+   - Main elements: **Upload Photo**, **Start Reading**, **Processing Status**, **Result Display**.  
+   - Reading results show recognized license plate information and country identifier, with options to return to the main interface or go to the information summary page. 
+   — License plates not uploaded by registered users will not be entered into the database, with a prompt: "Not registered, entry not allowed"
 
-2.4 **数据库查看**  
-   - 显示注册过用户的车牌信息
-   - 从 Firebase 获取并显示以下信息：  
-     - **用户 ID**  
-     - **车牌号**  
-     - **国家标识** (Country Identifier，如"GB"代表英国)
-     - **进场时间**  
-     - **出场时间**  
-     - **停车费用**  
-     -**是否已经支付**
+2.4 **Database Viewing**  
+   - Displays license plate information of registered users
+   - Retrieves and displays the following information from Firebase:  
+     - **User ID**  
+     - **License Plate Number**  
+     - **Country Identifier** (such as "GB" for Great Britain)
+     - **Entry Time**  
+     - **Exit Time**  
+     - **Parking Fee**  
+     - **Payment Status**
      
 
-### 3. ANPR 程序
-基于 Python 的 OCR 程序，用于自动识别车牌：
-1. 从上传文件或本地目录 **识别车牌**  
-2. 管理端可点击 "Start Reading" 读取指定文件夹或用户上传的照片  
-3. 系统抽取**车牌号码**和**国家标识**(如"GB"代表英国)，并将结果存到 Firebase  
-4. 支持识别蓝色区域中的"GB"标识和EU旗帜图标，以确定车牌来源国家
+### 3. ANPR Program
+An OCR program based on Python for automatic license plate recognition:
+1. **Recognize license plates** from uploaded files or local directories  
+2. The admin interface can click "Start Reading" to read photos from specified folders or user uploads  
+3. The system extracts **license plate numbers** and **country identifiers** (such as "GB" for Great Britain), and stores the results in Firebase  
+4. Supports recognizing "GB" markings and EU flag icons in the blue area to determine the country of origin of the license plate
 
 
 
-##5.HOME
-5.1.**欢迎/问候语 + 用户概览**
+##5. HOME
+5.1. **Welcome/Greeting + User Overview**
 
-以「欢迎回来，{用户名}」的形式，给用户一个友好直观的欢迎界面。
+Provides a friendly and intuitive welcome interface in the form of "Welcome back, {username}".
 
-5.2.可在 Home 显示**离你最近的停车场**点击跳转到这个最近停车场的详情页中
+5.2. The Home screen can display **the nearest parking lot to you**; clicking will jump to the details page of this closest parking lot
 
-5.3.**消息中心/通知**
+5.3. **Message Center/Notifications**
 
-在 Home 放置一个消息提示或通知中心入口，展示新的系统通知、支付提醒、活动通知等。
-notifications里面包括未付款订单提醒，停车入场出场提醒,支付成功提醒
+Place a message prompt or notification center entry in Home to display new system notifications, payment reminders, activity notifications, etc.
+Notifications include unpaid order reminders, parking entry/exit reminders, and payment success reminders
 
-如果有新的消息，显示红点或数字提示，提醒用户查看。
-用户可以点击查看通知内容
-5.4。**新手指引/教学入口**
+If there are new messages, display a red dot or number prompt to remind users to check.
+Users can click to view notification content
+5.4. **Beginner Guide/Tutorial Entry**
 
-如果针对新用户，需要一些App 功能说明，可以在 Home 做一个显眼的「新手教程」入口。
+For new users, if App functionality explanations are needed, a prominent "Beginner Tutorial" entry can be made in Home.
 
-对老用户则可选择折叠或隐藏。
+For existing users, this can be optionally collapsed or hidden.
 
-5.5.**模块化排版**
+5.5. **Modular Layout**
 
-整个 Home 建议采用「卡片式布局」或「分区式布局」，让不同功能板块层次分明，易于理解和点击。
+The entire Home is recommended to use a "card layout" or "sectioned layout", making different functional blocks clearly layered and easy to understand and click.
 
 
 ---
 
-## 使用技术
-- **主要编程语言**：Python、Kotlin、HTML/JavaScript (Web 管理端)
-- **框架与 API**：
-  - **Firebase**（认证、实时数据库或 Firestore）
-  - **Google Maps API**（地图与定位功能）
-  - **Stripe API**（用于演示支付）
-  - **OCR/计算机视觉**（Python 用于 ANPR）
-- **安卓（Android）**（用户移动端应用）
-- **Web**（管理界面）
+## Technologies Used
+- **Main Programming Languages**: Python, Kotlin, HTML/JavaScript (Web Admin Interface)
+- **Frameworks & APIs**:
+  - **Firebase** (Authentication, Realtime Database or Firestore)
+  - **Google Maps API** (Map and Location Functions)
+  - **Stripe API** (for Payment Demonstration)
+  - **OCR/Computer Vision** (Python for ANPR)
+- **Android** (User Mobile Application)
+- **Web** (Admin Interface)
 
 ---
 
-## Firebase 数据结构（推荐）
+## Firebase Data Structure (Recommended)
 
-以下为建议的 Firebase 数据结构，可根据需求进行调整：
+Below is the suggested Firebase data structure, which can be adjusted according to requirements:
 
 ```
 Firebase Root
