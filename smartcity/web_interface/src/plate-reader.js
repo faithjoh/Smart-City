@@ -36,7 +36,12 @@ function setupPlateReaderListeners() {
     uploadArea.addEventListener('drop', handleDrop);
     
     // Start reading button
-    startReadingBtn.addEventListener('click', handleStartReading);
+    startReadingBtn.addEventListener('click', () => {
+        handleStartReading().catch(err => {
+            console.error('Error in handleStartReading:', err);
+            updateStatus('Error processing image.', 'error');
+        });
+    });
     
     // Results actions
     saveResultsBtn.addEventListener('click', handleSaveResults);
@@ -139,7 +144,7 @@ async function handleStartReading() {
             updateStatus('Processing complete. License plate detected!', 'success');
         }
         
-        displayResults();
+        await displayResults();
         
         // Automatically save results to database
         await handleSaveResults();
@@ -320,7 +325,7 @@ function generateRandomPlate() {
 }
 
 // Display recognition results
-function displayResults() {
+async function displayResults() {
     // Clear previous results
     resultsTable.innerHTML = '';
     
@@ -347,6 +352,149 @@ function displayResults() {
     
     // Show the results container
     resultsContainer.classList.remove('hidden');
+    
+    // Display OCR processing steps visualization
+    await displayOcrProcessVisualization();
+}
+
+// Display OCR process visualization
+async function displayOcrProcessVisualization() {
+    // Generate visualization of OCR process steps using the demo images
+    // In a real implementation, these would be actual processing steps from the OCR engine
+    
+    // Define image paths for each OCR processing step
+    const processingSteps = [
+        { id: 'originalImage', step: 'original' },
+        { id: 'grayscaleImage', step: 'grayscale' },
+        { id: 'noiseRemovedImage', step: 'noise_removal' },
+        { id: 'histogramImage', step: 'histogram' },
+        { id: 'morphologyImage', step: 'morphology' },
+        { id: 'subtractionImage', step: 'subtraction' },
+        { id: 'thresholdingImage', step: 'thresholding' },
+        { id: 'roiImage', step: 'roi' },
+        { id: 'finalImage', step: 'final' }
+    ];
+    
+    // Add images to their respective containers
+    for (const step of processingSteps) {
+        const container = document.getElementById(step.id);
+        if (container) {
+            try {
+                const imageSrc = await createProcessStepImage(step.step);
+                container.innerHTML = `<img src="${imageSrc}" alt="${step.id}">`;
+            } catch (error) {
+                console.error(`Error creating image for step ${step.id}:`, error);
+                container.innerHTML = '<p>Error generating image</p>';
+            }
+        }
+    }
+}
+
+// Helper function to create process step images (simulating OCR steps)
+function createProcessStepImage(stepName) {
+    // In a real implementation, these would be actual processed images
+    // For this demo, we'll use a canvas to modify the original image
+    
+    if (!selectedImage) return '';
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 300;
+    canvas.height = 150;
+    
+    // Create a base image from the selected image
+    const img = new Image();
+    img.src = URL.createObjectURL(selectedImage);
+    
+    // Apply different filter effects based on the step
+    return new Promise((resolve) => {
+        img.onload = function() {
+            // Calculate aspect ratio and dimensions to maintain proportions
+            const aspectRatio = img.width / img.height;
+            let drawWidth = 300;
+            let drawHeight = drawWidth / aspectRatio;
+            
+            if (drawHeight > 150) {
+                drawHeight = 150;
+                drawWidth = drawHeight * aspectRatio;
+            }
+            
+            // Center the image
+            const x = (300 - drawWidth) / 2;
+            const y = (150 - drawHeight) / 2;
+            
+            // Draw the base image
+            ctx.drawImage(img, x, y, drawWidth, drawHeight);
+            
+            // Apply different effects based on the processing step
+            switch(stepName) {
+                case 'original':
+                    // Original image, no modifications
+                    break;
+                case 'grayscale':
+                    // Apply grayscale effect
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    for (let i = 0; i < data.length; i += 4) {
+                        const gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                        data[i] = gray;
+                        data[i + 1] = gray;
+                        data[i + 2] = gray;
+                    }
+                    ctx.putImageData(imageData, 0, 0);
+                    break;
+                case 'noise_removal':
+                    // Simulate noise removal with a slight blur
+                    ctx.filter = 'blur(1px)';
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.filter = 'none';
+                    break;
+                case 'histogram':
+                    // Simulate histogram equalization with contrast increase
+                    ctx.filter = 'contrast(150%)';
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.filter = 'none';
+                    break;
+                case 'morphology':
+                    // Simulate morphological operations (edge enhancement)
+                    ctx.filter = 'contrast(200%) brightness(120%)';
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.filter = 'none';
+                    break;
+                case 'subtraction':
+                    // Simulate image subtraction with high contrast and inverted colors
+                    ctx.filter = 'contrast(180%)';
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.filter = 'none';
+                    break;
+                case 'thresholding':
+                    // Simulate thresholding (black and white)
+                    ctx.filter = 'contrast(1000%)';
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.filter = 'none';
+                    break;
+                case 'roi':
+                    // Simulate region of interest extraction (draw a rectangle)
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth = 3;
+                    const padding = 10;
+                    ctx.strokeRect(x + padding, y + padding, drawWidth - padding*2, drawHeight - padding*2);
+                    break;
+                case 'final':
+                    // Final OCR result (draw the recognized text)
+                    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+                    const plateText = recognitionResults[0].plate_number;
+                    ctx.font = 'bold 20px Arial';
+                    ctx.fillStyle = 'green';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(plateText, canvas.width/2, canvas.height - 20);
+                    break;
+            }
+            
+            resolve(canvas.toDataURL('image/png'));
+        };
+    });
 }
 
 // Handle save results button click
@@ -598,6 +746,20 @@ function resetResults() {
     recognitionResults = null;
     resultsContainer.classList.add('hidden');
     resultsTable.innerHTML = '';
+    
+    // Clear OCR visualization steps
+    const stepIds = [
+        'originalImage', 'grayscaleImage', 'noiseRemovedImage', 
+        'histogramImage', 'morphologyImage', 'subtractionImage', 
+        'thresholdingImage', 'roiImage', 'finalImage'
+    ];
+    
+    stepIds.forEach(id => {
+        const container = document.getElementById(id);
+        if (container) {
+            container.innerHTML = '';
+        }
+    });
     
     // Reset buttons
     startReadingBtn.disabled = true;

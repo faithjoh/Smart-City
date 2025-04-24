@@ -209,10 +209,10 @@ def anpr_process():
                     img = cv2.imread(temp_path)
                     if img is None:
                         raise ValueError("Failed to read image with OpenCV")
-                    
+                
                     # Convert to grayscale
                     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                    
+                
                     # Resize image (3x larger)
                     scale_percent = 300
                     width = int(img.shape[1] * scale_percent / 100)
@@ -228,7 +228,7 @@ def anpr_process():
                     # 2. Noise removal
                     kernel = np.ones((1, 1), np.uint8)
                     opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
-                    
+                
                     # Save the processed image temporarily for debugging
                     debug_path = os.path.join(os.path.dirname(temp_path), 'debug_processed.jpg')
                     cv2.imwrite(debug_path, opening)
@@ -274,7 +274,7 @@ def anpr_process():
                         
                         # Filter to only alphanumeric
                         chars_clean = re.sub(r'[^A-Z0-9]', '', chars)
-                        
+                
                         # If we have enough characters for a license plate (at least 7)
                         if len(chars_clean) >= 7:
                             # Format the first 7 characters as a plate
