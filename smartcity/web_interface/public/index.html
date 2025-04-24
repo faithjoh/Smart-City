@@ -85,10 +85,10 @@
                                 <label for="imageUpload" class="btn secondary-btn">Select File</label>
                                 <input type="file" id="imageUpload" accept="image/*" hidden>
                             </div>
-                            <div class="or-divider">
+                            <div class="or-divider" style="display: none;">
                                 <span>OR</span>
                             </div>
-                            <div class="folder-selection">
+                            <div class="folder-selection" style="display: none;">
                                 <h3>Select from Default Folder</h3>
                                 <button class="btn secondary-btn" id="selectFromFolderBtn">Browse Folder</button>
                             </div>
@@ -96,11 +96,11 @@
                         <div class="process-image-card">
                             <h3>Process Image</h3>
                             <div id="imagePreview">
-                                <img src="https://raw.githubusercontent.com/user/smartcity-anpr/main/samples/AA70PYY.jpg" alt="Example UK License Plate" id="exampleImage">
+                                <p>Please upload a picture of the licence plate</p>
                             </div>
                             <div class="button-container">
                                 <button id="startReadingBtn" class="btn primary-btn">Start Reading</button>
-                                <button id="useExampleBtn" class="btn outline-btn">Use Example Image</button>
+                                <button id="useExampleBtn" class="btn outline-btn" style="display: none;">Use Example Image</button>
                             </div>
                             <div id="processingStatus" class="status">
                                 <p>Status: Ready</p>
@@ -206,38 +206,5 @@
     <script src="../src/plate-reader.js"></script>
     <script src="../src/database-viewer.js"></script>
     <script src="../src/main.js"></script>
-    <script>
-        // Add example image functionality after page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get the example image button
-            const useExampleBtn = document.getElementById('useExampleBtn');
-            if (useExampleBtn) {
-                useExampleBtn.addEventListener('click', function() {
-                    // Get the example image
-                    const exampleImg = document.getElementById('exampleImage');
-                    if (exampleImg && exampleImg.src) {
-                        // Convert image to Blob object
-                        fetch(exampleImg.src)
-                            .then(response => response.blob())
-                            .then(blob => {
-                                // Create a file object
-                                const file = new File([blob], "AA70PYY.jpg", { type: "image/jpeg" });
-                                // Simulate file selection
-                                const dataTransfer = new DataTransfer();
-                                dataTransfer.items.add(file);
-                                const fileInput = document.getElementById('imageUpload');
-                                if (fileInput) {
-                                    fileInput.files = dataTransfer.files;
-                                    // Trigger change event
-                                    const event = new Event('change', { bubbles: true });
-                                    fileInput.dispatchEvent(event);
-                                }
-                            })
-                            .catch(error => console.error('Error fetching example image:', error));
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html> 

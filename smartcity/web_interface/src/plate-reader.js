@@ -35,21 +35,12 @@ function setupPlateReaderListeners() {
     uploadArea.addEventListener('dragleave', handleDragLeave);
     uploadArea.addEventListener('drop', handleDrop);
     
-    // Select from folder button (simulated for demo)
-    selectFromFolderBtn.addEventListener('click', handleSelectFromFolder);
-    
     // Start reading button
     startReadingBtn.addEventListener('click', handleStartReading);
     
     // Results actions
     saveResultsBtn.addEventListener('click', handleSaveResults);
     newReadingBtn.addEventListener('click', handleNewReading);
-    
-    // Use example image button (if exists)
-    const useExampleBtn = document.getElementById('useExampleBtn');
-    if (useExampleBtn) {
-        useExampleBtn.addEventListener('click', handleUseExampleImage);
-    }
 }
 
 // Handle image selection from file input
@@ -110,18 +101,6 @@ function processSelectedFile(file) {
     
     // Update status
     updateStatus('Ready to process image.');
-}
-
-// Handle selecting from folder (simulated for demo)
-function handleSelectFromFolder() {
-    // For demo purposes, we will simulate selecting a file
-    // In a real implementation, this would show a server-side folder browser
-    
-    // Show a message
-    showMessage('Folder Selection', 'This feature would allow browsing server folders in a real implementation. For now, please use file upload.');
-    
-    // Alternatively, trigger the file input dialog
-    imageUpload.click();
 }
 
 // Handle start reading button click
@@ -309,17 +288,15 @@ async function analyzePlateImage(img, filename) {
                 confidence = 0.72;
             }
             
-            // Examples based on common UK plate images used in testing
-            // In a real implementation, this would use OCR
+            // Generate a random but realistic UK plate
+            plateNumber = generateRandomPlate();
+            
+            // Adjust confidence based on image characteristics
             if (img.width > 400 && img.width < 500 && countryIdentifier === "GB") {
-                plateNumber = "AA70 PYY";
                 confidence = 0.85;
             } else if (img.width > 500 && img.width < 600) {
-                plateNumber = "AB12 CDE";
                 confidence = 0.68;
             } else {
-                // Generate a random but realistic UK plate as a last resort
-                plateNumber = generateRandomPlate();
                 confidence = 0.6;
             }
         }
@@ -612,7 +589,7 @@ function handleNewReading() {
 // Reset the results and state
 function resetResults() {
     // Clear image preview
-    imagePreview.innerHTML = '<p>No image selected</p>';
+    imagePreview.innerHTML = '<p>Please upload a picture of the licence plate</p>';
     
     // Reset file input
     imageUpload.value = '';
@@ -643,48 +620,6 @@ function updateStatus(message, className = '') {
     if (className) {
         processingStatus.classList.add(className);
     }
-}
-
-// Handle using the example image
-function handleUseExampleImage() {
-    console.log("Using example image");
-    
-    // Get the example image element
-    const exampleImg = document.getElementById('exampleImage');
-    if (!exampleImg || !exampleImg.src) {
-        console.error("Example image not found");
-        return;
-    }
-    
-    // Create a fetch request to get the image as a blob
-    fetch(exampleImg.src)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.blob();
-        })
-        .then(blob => {
-            // Create a File object from the blob
-            const file = new File([blob], "AA70PYY.jpg", { type: "image/jpeg" });
-            
-            // Process the file
-            processSelectedFile(file);
-            
-            // Enable the start reading button
-            startReadingBtn.disabled = false;
-        })
-        .catch(error => {
-            console.error("Error fetching example image:", error);
-            showMessage("Error", "Could not load example image");
-        });
-}
-
-// Initialize when DOM is loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPlateReader);
-} else {
-    initPlateReader();
 }
 
 // Show a message dialog to the user
@@ -748,37 +683,9 @@ function showMessage(title, message) {
     }
 }
 
-// Export for use in main.js
-window.initPlateReader = initPlateReader;
-
-// Add comments about the document.addEventListener code at the bottom of the file
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the example image button
-    const useExampleBtn = document.getElementById('useExampleBtn');
-    if (useExampleBtn) {
-        useExampleBtn.addEventListener('click', function() {
-            // Get the example image
-            const exampleImg = document.getElementById('exampleImage');
-            if (exampleImg && exampleImg.src) {
-                // Convert image to Blob object
-                fetch(exampleImg.src)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        // Create a file object
-                        const file = new File([blob], "AA70PYY.jpg", { type: "image/jpeg" });
-                        // Simulate file selection
-                        const dataTransfer = new DataTransfer();
-                        dataTransfer.items.add(file);
-                        const fileInput = document.getElementById('imageUpload');
-                        if (fileInput) {
-                            fileInput.files = dataTransfer.files;
-                            // Trigger change event
-                            const event = new Event('change', { bubbles: true });
-                            fileInput.dispatchEvent(event);
-                        }
-                    })
-                    .catch(error => console.error('Error fetching example image:', error));
-            }
-        });
-    }
-}); 
+// Initialize when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPlateReader);
+} else {
+    initPlateReader();
+} 
